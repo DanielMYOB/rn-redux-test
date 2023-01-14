@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import Message from "./components/Message";
+import Users from "./components/Users";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Message />
+          <Users />
+        </ScrollView>
+      </SafeAreaView>
+    </Provider>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginHorizontal: 10,
   },
 });
